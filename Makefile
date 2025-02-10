@@ -14,4 +14,4 @@ sdl: dda-sdl3.c
 #raylib:
 # cc main.c -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 clean:
-	rm -f dda dda-sdl
+	rm -f dda dda-sdl bla
