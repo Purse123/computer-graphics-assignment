@@ -9,18 +9,15 @@ typedef struct fvector2D {
 void dda(fvector2D p1, fvector2D p2){
   float dx = p2.x - p1.x;
   float dy = p2.y - p1.y;
-  float steps;
-  if (fabs (dx) > fabs (dy)) {
-    steps = dx;
-  } else {
-    steps = dy;
-  }
-  dx /= steps;
-  dy /= steps;
-  for (int i =  1; i <= steps; i++) {
-    putpixel(p1.x, p1.y, YELLOW);
-    p1.x = p1.x + dx;
-    p1.y = p1.y + dy;
+  int steps = fmax(fabs(dx), fabs(dy));
+
+  float x_inc = dx / steps;
+  float y_inc = dy / steps;
+
+  for (int i = 0; i <= steps; i++) {
+    putpixel(round(p1.x), round(p1.y), YELLOW);
+    p1.x += x_inc;
+    p1.y += y_inc;
   }
 }
 
@@ -43,6 +40,6 @@ int main() {
   scanf("%f", &ending.y);
 
   dda(starting, ending);
-  delay(5000);
+  delay(3000);
   closegraph();
 }

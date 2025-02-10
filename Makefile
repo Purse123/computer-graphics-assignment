@@ -1,9 +1,12 @@
 CC=gcc
-LIBS= -lSDL_bgi -lSDL2
+LIBS= -lSDL_bgi -lSDL2 -lm
 CFLAGS= -Wall
 
 dda: 1-dda.c
 	$(CC) -o dda 1-dda.c $(LIBS) $(CFLAGS)
+
+bla: 1-dda.c
+	$(CC) -o bla 2-bresenhams.c $(LIBS) $(CFLAGS)
 
 sdl: dda-sdl3.c
 	$(CC) -o dda-sdl dda-sdl3.c $(pkg-config --cflags --libs sdl3)
