@@ -5,7 +5,7 @@ CFLAGS= -Wall
 dda: 1-dda.c
 	$(CC) -o dda 1-dda.c $(LIBS) $(CFLAGS)
 
-bla: 1-dda.c
+bla: 2-bresenhams.c
 	$(CC) -o bla 2-bresenhams.c $(LIBS) $(CFLAGS)
 
 sdl: dda-sdl3.c
