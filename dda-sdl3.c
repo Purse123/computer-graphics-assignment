@@ -1,41 +1,37 @@
+#include <stdio.h>
 #include <SDL3/SDL.h>
+#include <SDL3/SDL_video.h>
+#include <SDL3/SDL_render.h>
+
+#define WINDOW_HEIGHT 400
+#define WINDOW_WIDTH 600
 
 int main() {
-    // Initialize SDL
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        SDL_Log("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
-        return 1;
+/*
+ * FLAGS
+ * #define SDL_INIT_AUDIO      0x00000010u `SDL_INIT_AUDIO` implies `SDL_INIT_EVENTS`
+ * #define SDL_INIT_VIDEO      0x00000020u `SDL_INIT_VIDEO` implies `SDL_INIT_EVENTS`, should be initialized on the main thread
+ * #define SDL_INIT_JOYSTICK   0x00000200u `SDL_INIT_JOYSTICK` implies `SDL_INIT_EVENTS`, should be initialized on the same thread
+ * as SDL_INIT_VIDEO on Windows if you don't set SDL_HINT_JOYSTICK_THREAD
+ * #define SDL_INIT_HAPTIC     0x00001000u
+ * #define SDL_INIT_GAMEPAD    0x00002000u `SDL_INIT_GAMEPAD` implies `SDL_INIT_JOYSTICK`
+ * #define SDL_INIT_EVENTS     0x00004000u
+ * #define SDL_INIT_SENSOR     0x00008000u `SDL_INIT_SENSOR` implies `SDL_INIT_EVENTS`
+ * #define SDL_INIT_CAMERA     0x00010000u `SDL_INIT_CAMERA` implies `SDL_INIT_EVENTS`
+*/
+    SDL_Init(SDL_INIT_VIDEO);
+
+    // SDL_Window * SDL_CreateWindow(const char *title, int w, int h, SDL_WindowFlags flags);
+    SDL_Window *window = SDL_CreateWindow("--Dont look here you Nasty--", WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_OPENGL);
+    if (window == NULL) {
+        printf("Window unable to create\n");
     }
 
-    // Create a window (No flags needed in SDL3)
-    SDL_Window *window = SDL_CreateWindow("SDL3 Test", 640, 480, 0);
-    if (!window) {
-        SDL_Log("Window could not be created! SDL_Error: %s\n", SDL_GetError());
-        SDL_Quit();
-        return 1;
-    }
+    // SDL_Renderer * SDL_CreateRenderer(SDL_Window *window, const char *name);
+    SDL_Renderer *renderer = SDL_CreateRenderer(window, NULL);
 
-    // Create a renderer
-    SDL_Renderer *renderer = SDL_CreateRenderer(window, "opengl");
-    if (!renderer) {
-        SDL_Log("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
-        SDL_DestroyWindow(window);
-        SDL_Quit();
-        return 1;
-    }
-
-    // Set background color (Black)
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
     SDL_RenderClear(renderer);
     SDL_RenderPresent(renderer);
-
-    // Keep window open for 3 seconds
     SDL_Delay(3000);
-
-    // Cleanup
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-    SDL_Quit();
-
-    return 0;
 }
