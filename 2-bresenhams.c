@@ -12,13 +12,15 @@ void bresenhams(fvector2D p1, fvector2D p2) {
 
   int incrementer_x = (p2.x > p1.x) ? 1: -1;
   int incrementer_y = (p2.y > p1.y) ? 1: -1;
-  // m <= 1 -> p = 2*dy - dx
-  // m > 1 -> p = 2*dx - dy
+
+  // THEORY: m <= 1 -> p = 2*dy - dx
+  // THEORY: m > 1 -> p = 2*dx - dy
   if (dy >= dx) {
     int desPar = 2 * dy - dx;
     while (p1.x != p2.x) {
       putpixel(p1.x, p1.y, YELLOW);
       p1.x += incrementer_x;
+
       if (desPar < 0) {
         desPar = desPar + 2 * dy;
       } else {
@@ -31,6 +33,7 @@ void bresenhams(fvector2D p1, fvector2D p2) {
     while (p1.y != p2.y) {
       putpixel(p1.x, p1.y, YELLOW);
       p1.y += incrementer_y;
+
       if (desPar < 0) {
         desPar = desPar + 2 * dx;
       } else {

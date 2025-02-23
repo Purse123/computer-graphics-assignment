@@ -1,5 +1,6 @@
 #include <graphics.h>
 #include <stdlib.h>
+#define COLOR YELLOW
 
 typedef struct fvector2D {
   float x;
@@ -15,7 +16,7 @@ void dda(fvector2D p1, fvector2D p2){
   float y_inc = dy / steps;
 
   for (int i = 0; i <= steps; i++) {
-    putpixel(round(p1.x), round(p1.y), YELLOW);
+    putpixel(round(p1.x), round(p1.y), COLOR);
     p1.x += x_inc;
     p1.y += y_inc;
   }
