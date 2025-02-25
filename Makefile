@@ -14,11 +14,15 @@ circle: 3-mid-point.c
 
 ellipse: 4-midpoint-ellipse.c
 	$(CC) -o ellipse 4-midpoint-ellipse.c $(LIBS) $(CFLAGS)
+
+2d: 5-2d-trans.c
+	$(CC) -o 2d-transform 5-2d-trans.c $(LIBS) $(CFLAGS)
+
 #sdl:
 sdl-dda: dda-sdl3.c
 	$(CC) -o dda-sdl dda-sdl3.c $(pkg-config --cflags --libs sdl3)
 
 #raylib:
-# cc main.c -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+	cc main.c -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 clean:
-	rm -f dda dda-sdl bla circle ellipse
+	rm -f dda dda-sdl bla circle ellipse 2d-transform
