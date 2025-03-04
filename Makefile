@@ -18,6 +18,9 @@ ellipse: 4-midpoint-ellipse.c
 2d: 5-2d-trans.c
 	$(CC) -o 2d-transform 5-2d-trans.c $(LIBS) $(CFLAGS)
 
+bz: 6-bezier-curve.c
+	$(CC) -o 6-bezier-curve 6-bezier-curve.c $(LIBS) $(CFLAGS)
+
 #sdl:
 sdl-dda: dda-sdl3.c
 	$(CC) -o dda-sdl dda-sdl3.c $(pkg-config --cflags --libs sdl3)
@@ -25,4 +28,4 @@ sdl-dda: dda-sdl3.c
 #raylib:
 	cc main.c -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 clean:
-	rm -f dda dda-sdl bla circle ellipse 2d-transform
+	rm -f dda dda-sdl bla circle ellipse 2d-transform 6-bezier-curve
