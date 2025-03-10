@@ -21,6 +21,15 @@ ellipse: 4-midpoint-ellipse.c
 bz: 6-bezier-curve.c
 	$(CC) -o 6-bezier-curve 6-bezier-curve.c $(LIBS) $(CFLAGS)
 
+3D: 7-3D-transformation.c
+	$(CC) -o 3d-transformation 7-3D-transformation.c $(LIBS) $(CFLAGS)
+
+sutherland: 8-sutherland.c
+	$(CC) -o sutherland 8-sutherland.c $(LIBS) $(CFLAGS)
+
+liang-barsky: 9-liang-barsky.c
+	$(CC) -o liang-barsky 9-liang-barsky.c $(LIBS) $(CFLAGS)
+
 #sdl:
 sdl-dda: dda-sdl3.c
 	$(CC) -o dda-sdl dda-sdl3.c $(pkg-config --cflags --libs sdl3)
@@ -28,4 +37,4 @@ sdl-dda: dda-sdl3.c
 #raylib:
 	cc main.c -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 clean:
-	rm -f dda dda-sdl bla circle ellipse 2d-transform 6-bezier-curve
+	rm -f dda dda-sdl bla circle ellipse 2d-transform 6-bezier-curve 3d-transformation sutherland liang-barsky
