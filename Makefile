@@ -1,6 +1,7 @@
 CC=gcc
 # LIBS= -lSDL_bgi -lSDL2 -lm
 LIBS= -lSDL_bgi -lm
+OPENGL_LIBS=$(pkg-config --cflags --libs glfw3) $(pkg-config --cflags --libs gl) -lm
 CFLAGS= -Wall
 
 dda: 1-dda.c
@@ -29,6 +30,9 @@ sutherland: 8-sutherland.c
 
 liang-barsky: 9-liang-barsky.c
 	$(CC) -o liang-barsky 9-liang-barsky.c $(LIBS) $(CFLAGS)
+
+gl_line: 
+	$(CC) -o $(OPENGL_LIBS) $(CFLAGS)
 
 #sdl:
 sdl-dda: dda-sdl3.c
